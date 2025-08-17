@@ -469,7 +469,7 @@ type Object = FromSchema<typeof openObjectSchema>;
 const openObjectSchema = {
   type: "object",
   additionalProperties: true,
-  patternProperties: {
+  properties: {
     foo: { type: "string" },
   },
 } as const;
@@ -478,7 +478,7 @@ type Object = FromSchema<
   typeof tupleSchema,
   { omitAdditionalProperties: true }
 >;
-// => { foo: string }
+// => { foo?: string }
 ```
 
 ## Combining schemas
