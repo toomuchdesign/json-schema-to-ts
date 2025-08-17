@@ -41,13 +41,17 @@ export type ParseObjectSchema<
       },
       GetRequired<OBJECT_SCHEMA, OPTIONS>,
       GetOpenProps<OBJECT_SCHEMA, OPTIONS>,
-      GetClosedOnResolve<OBJECT_SCHEMA>
+      OPTIONS["omitAdditionalProperties"] extends true
+        ? true
+        : GetClosedOnResolve<OBJECT_SCHEMA>
     >
   : M.$Object<
       {},
       GetRequired<OBJECT_SCHEMA, OPTIONS>,
       GetOpenProps<OBJECT_SCHEMA, OPTIONS>,
-      GetClosedOnResolve<OBJECT_SCHEMA>
+      OPTIONS["omitAdditionalProperties"] extends true
+        ? true
+        : GetClosedOnResolve<OBJECT_SCHEMA>
     >;
 
 /**
