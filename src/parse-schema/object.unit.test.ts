@@ -50,12 +50,12 @@ describe("Object schemas", () => {
 
     describe("with omitAdditionalProperties option", () => {
       it("rejects additional properties", () => {
-        type Set = FromSchema<
+        type Set2 = FromSchema<
           typeof setSchema,
           { omitAdditionalProperties: true }
         >;
 
-        expectTypeOf<Set>().toEqualTypeOf<{}>();
+        expectTypeOf<Set2>().toEqualTypeOf<{}>();
       });
     });
   });
@@ -322,13 +322,12 @@ describe("Object schemas", () => {
 
     describe("with omitAdditionalProperties option", () => {
       it("rejects object with additional properties", () => {
-        type Address = FromSchema<
+        type Address2 = FromSchema<
           typeof addressSchema,
           { omitAdditionalProperties: true }
         >;
-        let addressInstance: Address;
 
-        addressInstance = {
+        const addressInstance2: Address2 = {
           number: 13,
           streetName: "Champs Elysées",
           streetType: "Avenue",
@@ -336,7 +335,7 @@ describe("Object schemas", () => {
           // @ts-expect-error
           additionalProperty: ["any", "value"],
         };
-        expect(ajv.validate(addressSchema, addressInstance)).toBe(true);
+        expect(ajv.validate(addressSchema, addressInstance2)).toBe(true);
       });
     });
   });
@@ -392,20 +391,19 @@ describe("Object schemas", () => {
 
     describe("with omitAdditionalProperties option", () => {
       it("rejects object with valid additional properties", () => {
-        type Address = FromSchema<
+        type Address2 = FromSchema<
           typeof addressSchema,
           { omitAdditionalProperties: true }
         >;
-        let addressInstance: Address;
 
-        addressInstance = {
+        const addressInstance2: Address2 = {
           number: 13,
           streetName: "Champs Elysées",
           streetType: "Avenue",
           // @ts-expect-error
           additionalProperty: "additionalProperty",
         };
-        expect(ajv.validate(addressSchema, addressInstance)).toBe(true);
+        expect(ajv.validate(addressSchema, addressInstance2)).toBe(true);
       });
     });
   });
